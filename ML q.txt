@@ -1,0 +1,66 @@
+﻿1)
+Closed form solution for logistic regression is given by    where  is the feature matrix of size MxN and  is the target vector of size Mx1 where M is the number of datapoints and N is the number of features. Now when we duplicate the  feature to  feature we would have  column equal to  column in , this implies  is 0. Hence there would be infinitely many solution  from the above expression. So the solution would depend on regression techniques such as:
+
+
+The weights may be distributed among the duplicated features. Both 
+​
+​
+could be non-zero, and their sum might resemble the weight assigned to the original feature in the old model that is 
+
+
+In addition , If the logistic regression algorithm treats the duplicated features as equivalent or nearly equivalent, this implies that  .
+
+
+Also In some cases, the model might decide that one of the duplicated features is sufficient, and it assigns non-zero weight to only one of them. This would mean: either one of  or is 0 and the other one is equal to old weight that is 
+2)
+Email Template A/B Testing Analysis
+This document presents the analysis of an A/B testing conducted on different email marketing templates. The goal was to determine which template achieves the highest click-through rate (CTR) compared to the control template (Template A).
+Test Setup
+Templates A, B, C, D, and E were tested, with each template being sent to 1000 different random users. The observed CTRs were as follows:
+Template A (Control): 10% CTR
+Template B: 7% CTR
+Template C: 8.5% CTR
+Template D: 12% CTR
+Template E: 14% CTR
+Methodology
+A binomial test was used to compare the CTR of each template against the control template (Template A). The binomial test calculates the probability of observing a number of successes as extreme as, or more extreme than, the observed, under the null hypothesis (that the CTR of each template is equal to that of Template A). A two-tailed test was employed for these calculations.
+Results
+The p-values for each template compared to Template A were calculated as follows:
+Template B vs. A: P-value = 0.00115
+Template C vs. A: P-value = 0.25213
+Template D vs. A: P-value = 1.9655
+Template E vs. A: P-value = 1.99995
+These p-values were interpreted in the context of a 95% confidence level.
+Conclusion
+Based on the calculated p-values, the following conclusions were drawn:
+1. Template B is statistically worse than Template A with over 95% confidence.
+2. We cannot conclude with 95% confidence that Templates C, D, and E are either better or worse than Template A, as their p-values did not show statistical significance at the 95% confidence level.
+Therefore, the statement that most accurately represents the results of this A/B testing is: 'We have too little data to conclude that Template A is better or worse than any other template with 95% confidence.'
+
+
+3)
+In logistic regression the model essentially computes the error function(negative logarithm of likelihood):  and its gradient as where  for i= 1 to m. Now calculating  for each datapoint will take O(n), therefore for all data points the total complexity in one iteration will be O(mn) 
+
+
+The sparse nature of the feature vectors avoids unnecessary computations for zero-valued entries. As the number of non-zero entries in each training example as k, the number of features as n, and the number of training examples as m, the approximate computational cost of each gradient descent iteration for logistic regression with sparse features is proportional to the number of non-zero entries in the entire dataset. In other words, the complexity is closer to O(mk) rather than O(mn), which would be the cost without exploiting sparsity.
+4)
+When considering the different methods for generating training data to improve the accuracy of a text classifier, each approach has its own merits and potential drawbacks.
+The first method, which involves selecting stories where the initial classifier's output is closest to the decision boundary, targets the most ambiguous cases. This approach is beneficial in refining the model's ability to discern subtle distinctions, especially useful in cases where classification isn't straightforward. However, the risk here is focusing too much on edge cases, which might not be broadly representative of the typical news stories. The model could become overly specialized in dealing with nuances that are rare in the general flow of news.
+The second method, obtaining a random sample of labeled stories from a variety of sources, aims to provide a well-rounded view of the data landscape. This approach is likely to capture the diversity inherent in the 1000 news sources, leading to a model that is versatile and more capable of generalizing across different story types. The downside is that the randomness of the selection might include many straightforward examples that offer limited new learning opportunities for the model.
+The third method focuses on stories where the initial classifier was not just wrong, but confidently so, and far from the decision boundary. This approach is powerful for identifying and correcting the model's most significant misunderstandings. Training on these examples can lead to substantial improvements in areas where the model currently fails. However, like the first method, this approach might also skew the training towards atypical, extreme cases, potentially leading to a model that excels in rare scenarios but not necessarily in everyday classification tasks.
+In terms of ranking these approaches, it appears that the second method, with its focus on a broad and representative sample, would most likely lead to the greatest improvement in general accuracy. It avoids the pitfalls of overfitting to specific types of edge cases, ensuring the model remains adaptable and effective across a wide range of news stories. The first and third methods, while valuable for addressing specific weaknesses of the classifier, may not contribute as effectively to overall performance due to their focus on more extreme or ambiguous examples.
+
+
+5)The MLE for the probability p is simply the ratio of the number of heads to the total number of tosses: .
+Now for bayesian estimate of p we have to find the expectation of posterior distribution given the prior is uniformly distributed in [0, 1]. 
+
+
+Given a uniform prior distribution for p in the interval [0,1] and assuming a binomial likelihood, the posterior distribution is a Beta distribution with pdf . Where B(α,β) is the Beta function, and α and β are the shape parameters. In this context, the shape parameters are determined by the prior and the observed data.
+For a uniform prior, we have α=β=1. After observing k heads and n−k tails, the posterior distribution parameters become αposterior =1+k and βposterior =1+(n−k). The expected value (mean) of a Beta distribution with shape parameters α and
+β is given by: E(p) = 
+For MAP estimate we have to calculate the mode of posterior. Mode for Beta distribution is given by . So MAP estimate is given by 
+
+
+
+
+​
